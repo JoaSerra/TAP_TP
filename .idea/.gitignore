@@ -2,8 +2,29 @@
 /shelf/
 /workspace.xml
 
-*.class
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+**/logs/
 *.log
-*.iml
+
+# IntelliJ IDEA
 .idea/
+*.iml
+*.iws
+out/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Docker
 *.jar
+*.tar
+*.gz
+*.img
+*.dockerfile
+
+# JSON DB
+*.json
+
