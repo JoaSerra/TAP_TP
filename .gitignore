@@ -2,15 +2,24 @@
 /shelf/
 /workspace.xml
 *.bkp
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
 
 # Archivos locales
-comandos git.txt
-Gestion espectaculos TAP.drawio
+comandosGit.md
+images/Gestion espectaculos TAP.drawio
+
 # Maven
 target/
 !.mvn/wrapper/maven-wrapper.jar
 **/logs/
 *.log
+
 
 # IntelliJ IDEA
 .idea/
@@ -20,12 +29,19 @@ out/
 
 # OS generated
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # Docker
 *.jar
 *.tar
 *.gz
+*.7z
+*.rar
 *.img
 *.dockerfile
 
