@@ -9,17 +9,20 @@
 *.o
 *.so
 
-
 # Archivos locales
 comandosGit.md
-images/Gestion espectaculos TAP.drawio
+src/main/resources/static/images/Gestion espectaculos TAP.drawio
 
 # Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
-**/logs/
+dependency-reduced-pom.xml
+release.properties
+*.releaseBackup
 *.log
+.mvn/timing.properties
 
+# Docker Maven Plugin
+docker-maven-plugin/
 
 # IntelliJ IDEA
 .idea/
