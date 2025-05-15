@@ -10,7 +10,7 @@
 *.so
 
 # Archivos locales
-comandosGit.md
+#comandosGit.md
 src/main/resources/static/images/Gestion espectaculos TAP.drawio
 
 # Maven
@@ -21,8 +21,6 @@ release.properties
 *.log
 .mvn/timing.properties
 
-# Docker Maven Plugin
-docker-maven-plugin/
 
 # IntelliJ IDEA
 .idea/

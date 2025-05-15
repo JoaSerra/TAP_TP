@@ -7,8 +7,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tap</groupId>
-    <artifactId>gestion-espectaculo</artifactId>
+    <artifactId>gestion-teatro</artifactId>
     <version>1.0</version>
+    <name>gestion-teatro</name>
     <packaging>jar</packaging>
 
     <properties>

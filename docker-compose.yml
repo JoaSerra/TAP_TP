@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  app_teatro:
+    build: .
+    container_name: app-teatro
+
+
+    restart: always
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:15-bookworm
+    container_name: postgres-teatro
+    restart: always
+    environment:
+      #DB_URL: postgres://teatro:admin@postgres:5432/teatrodb
+      POSTGRES_USER: teatro
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: teatrodb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
