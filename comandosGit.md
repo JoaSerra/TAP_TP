@@ -1,4 +1,4 @@
-### Actualizar el main
+ ### Actualizar el main
 `git checkout main` -> Moverme a la rama main  
 `git pull origin main` -> Actualiza la rama desde el repo  
 

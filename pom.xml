@@ -6,10 +6,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tap</groupId>
-    <artifactId>gestion-teatro</artifactId>
+    <groupId>com.teatro.app</groupId>
+    <artifactId>app-teatro</artifactId>
     <version>1.0</version>
-    <name>gestion-teatro</name>
+    <name>app-teatro</name>
     <packaging>jar</packaging>
 
     <properties>
@@ -62,6 +62,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.4.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
