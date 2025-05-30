@@ -5,7 +5,7 @@ Cuentan con dos espacios:
 1. Una sala con capacidad para 70 personas. Costo variable en las entradas, las tipo A, tienen un costo del doble de las tipo B
 2. En anfiteatro a cielo abierto con una capacidad para 120 personas. Precio único.
 
-Para lo cual un usuario registrado en el sistema registra la siguiente información:
+Para lo cual un user registrado en el sistema registra la siguiente información:
 * Artista
 * Fecha de la función
 * Hora de la función

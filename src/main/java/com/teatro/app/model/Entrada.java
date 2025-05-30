@@ -5,7 +5,7 @@ public class Entrada {
     private int nroEntrada;
     private Espectaculo espectaculo;
     private Espacio espacio;
-    private Persona persona;
+    private User user;
     private double precio;
 
     public Entrada(){
@@ -30,11 +30,11 @@ public class Entrada {
     public void setEspectaculo(Espectaculo espectaculo) {
         this.espectaculo = espectaculo;
     }
-    public Persona getPersona() {
-        return persona;
+    public User getUsuario() {
+        return user;
     }
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setUsuario(User user) {
+        this.user = user;
     }
     public double getPrecio() {
         return precio;

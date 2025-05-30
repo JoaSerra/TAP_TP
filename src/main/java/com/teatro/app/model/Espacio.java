@@ -1,5 +1,11 @@
 package com.teatro.app.model;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class Espacio {
 
     private String nombre;
@@ -10,6 +16,7 @@ public abstract class Espacio {
     public Espacio(String nombre) {
         this.nombre = nombre;
     }
+    /*
     public String getNombre() {
         return nombre;
     }
@@ -22,6 +29,6 @@ public abstract class Espacio {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-
+    */
     public abstract double calcularPrecioEntrada(int cantidadEntradas, int tipoEntrada, double precioBase);
 }
