@@ -36,7 +36,7 @@ public class PublicController {
         if (!userRepository.existsByUsername(username)) {
             User nuevo = new User();
             nuevo.setUsername(username);
-            nuevo.setPassword("{noop}" + password); // NOOP solo para pruebas, reemplazar por BCrypt en producción
+            nuevo.setPassword("{noop}" + password); // noop para no encriptar la contraseña
             nuevo.setRole("USUARIO");
             userRepository.save(nuevo);
         }
