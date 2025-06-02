@@ -1,0 +1,188 @@
+<!-- HTML es un lenguaje de programacion que sirve para estructurar paginas web. Funciona con etiquetas, que tienen atributos y valores. -->
+
+<!-- https://youtu.be/kN1XP-Bef7w  Curso Dalto-->
+
+<!-- Boostrap es una libreria q sirve para hacer las paginas responsive, le cambias la class a un elemento y ya esta el css hecho -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aca se escribe el titulo de la pagina</title>
+    <meta charset="utf-8"> <!-- Es para que funcionen los simbolos, acentos, etc. -->
+    <link rel="stylesheet" href="Aca va el archivo css que modifica a este">
+    <link rel="icon" href="ruta de la foto .ico"> <!-- Esto es para ponerle icono a la pagina. LA IMAGEN TIENE Q TENER FORMATO .ico -->
+    <script src="https://kit.fontawesome.com/313e1cf5f7.js" crossorigin="anonymous"></script>
+    <!-- Esto sirve para poner iconos adentro de la pagina -->
+</head>
+<body>
+    <!-- Aca en el BODY se usan etiquetas, la mayoria se abren y despues se cierran -->
+    <h1>esto es un titulo grande, se usa 1 sola vez por pagina</h1>
+    <h2>un titulo mas chiquito que el anterior, se usa algunas veces</h2>
+    <h3>lo mismo hasta h6</h3>
+    <h4></h4>
+    <h5></h5> <!-- h3 h4 h5 y h6 se usa las veces q queramos -->
+    <h6></h6>
+
+    <p>
+        es para escribir un parrafo
+    </p>
+    <b>lo que este aca se pone en negrita</b>
+    <i>esto es italica (cursiva)</i>
+    <small>una letra chiquita</small>
+    <a href="Aca va un link (si es externo a la pc se pone https://)" target="_blank">aca pones lo que se puede tocar para ir al link</a> <!-- el target="_blank" sirve para que el link se abra en una nueva ventana. -->
+
+    <div>
+        funciona para crear cajas donde pones cosas adentro, sirve para separar las cosas
+    </div>
+
+    el <br> es como apretar enter en word, completa la linea.
+
+    <!-- Para crear listas se usa lo siguiente: -->
+    <!-- Primero se puede poner sobre que es la lista -->
+    <ul>
+        <li>el "ul" se usa para listas "desordenadas" aparecen los puntitos negros</li>
+        <li>se puede poner la cantidad que queramos</li>
+    </ul>
+    <ol>
+        <li>el "ol" es para listas "ordenadas" osea NUMERADAS</li>
+        <li>tambien se pone la cantidad que quieras</li>
+    </ol>
+
+
+    <!-- para despues personalizar los textos hay q poner class o id que se usan para identificar las cosas. Por ejemplo: -->
+    <div class="contenedor de titulos">
+        asd
+    </div>
+
+    <img src="link de la imagen" alt=" IMPORTANTE" title="aparece cuando pasas el mouse por arriba"> <!-- En el alt escribis lo q aparece si la imagen no se puede mostrar, porq no la encuentra o lo q sea. -->
+    <a href=""><img src="" alt=""></a> <!-- Poner imagen como link -->
+
+    <video src="Aca va el link del video" controls, autoplay, muted, loop> <!--muted y loop son otras propiedades -->
+        <!-- asi se pone un video, controls es para poner pausa, etc. autoplay para q empiece cuando se carga -->
+    </video>
+
+    <audio src="El link del audio" controls, autoplay>
+        <!-- controls y autoplay igual q en video -->
+    </audio>
+
+    <object data="archivo.html"></object> <!-- object es para poner cosas, puede ser codigo html, imagenes, etc -->
+    <embed src="foto.jpg"> <!-- embed es incrustar, la etiqueta no se cierra, tambien se puede poner codigo, imagenes, etc-->
+    <iframe src="link" title="descripcion"></iframe> <!-- es para poner un documento-->
+
+    <!-- Lo siguiente es para hacer formularios, son cuadros donde el usuario puede escribir cosas para despues enviar esa info -->
+
+    <form method="post" autocomplete="off">
+        <!-- method post no se q es, autocomplete es para q no se autocomplete -->
+        <input type="text" placeholder="Nombre de Usuario"> <!-- texto. el placeholder es lo q aparece adentro de la caja -->
+        <input type="password" required=""> <!-- contraseñas. si dice required es para que haya q completarlo SI O SI, se puede poner en todos -->
+        <input type="number"> <!-- solo numeros -->
+        <input type="email"> <!-- si no tiene formato mail no lo puede mandar "@gmail.com" -->
+        <input type="color"> <!-- colores -->
+        <input type="range" min="1" max="100"> <!-- rango para elegir numeros entre los que le digamos, ej: entre 1-100 -->
+        <input type="date"> <!-- fecha -->
+        <input type="time"> <!-- tiempo -->
+        <input type="button" value="esto es lo que aparece en el boton"> <!-- un boton que debe servir para algo  -->
+        <input type="submit" value="lo q aparece en donde dice enviar"> <!-- enviar la info, si no ponemos value dice ENVIAR-->
+        <input type="file"> <!-- Sirve para poder seleccionar y cargar un archivo -->
+        <input type="select"> <!-- Es para q se abra el menu para seleccionar diferentes opciones-->
+        <button aria-expanded="false">seleccionar pais</button>
+        <option value="1">enero</option> <!-- Opciones para seleccionar-->
+        <option value="2">febrero</option>
+        <textarea readonly=""> un area de texto sin mas</textarea> <!-- el readonly es para q solo se pueda leer -->
+    </form>
+
+    <!-- Lo que sigue es como para ordenar las cosas -->
+    <header>
+        <!-- es el encabezado, esto aparece arriba -->
+        <nav>
+            <!-- se puede usar para poner links para por ejemplo ir al inicio, ir a mi cuenta, sobre nosotros, etc... -->
+            <ul>
+                <li><a href="aca se pone por ejemplo index.html">Inicio</a></li>
+                <li><a href="micuenta.html">Mi Cuenta</a></li> <!-- hay q crear otros archivos html para que despues te pueda redireccionar a otras partes de la pagina. Para crearlo tenes q cambiar todo PERO LO QUE ESTA ADENTRO DEL HEADER QUEDA IGUAL -->
+                <li><a href="sobre nosotros.html">Sobre nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <table>
+        <!-- Son tablas, es como un grid pero mejor -->
+        <colgroup>
+            <col span="2" style="background-color:blue"> <!--esto hace q las 2 primeras col sean azules -->
+            <col span="3">
+            <col span="1" style="background-color: red"> <!--Las 2 primeras estan azul, las proximas 3 default y 1 roja -->
+        </colgroup>
+        <tr> <!-- tr es Table Row, lo q este entre estas etiquetas se pone en la misma fila -->
+            <th>Nombre</th> <!-- th es Table Header, es para usar en la fila de arriba donde ponemos los titulos -->
+            <th>Edad</th> <!-- estos datos estan centrados y en negrita -->
+        </tr>
+        <tr>
+            <td>Juan Perez</td> <!-- td es Table Data, son los datos de la tabla -->
+            <td>53</td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2">asd</td> <!--esto hace q las filas (row) o columnas (col), ocupen mas de 1 espacio -->
+        </tr>
+    </table>
+    <!--Estas tablas se pueden retocar en CSS (border, size, padding, spacing) -->
+    <!--Se le puede dar diferentes colores a las filas y columnas
+        					https://www.w3schools.com/html/html_table_styling.asp -->
+
+
+    <article>
+        <!-- esto es para hacer articulos, para que esten mas ordenados y no este todo volando por la pagina desordenado -->
+        <section>
+            <!-- adentro del articulo se puede dividir en secciones si son mas de 1 -->
+            <h2> Titulo del articulo</h2>
+            <h3> Subtitulo del articulo</h3>
+            <p>
+                Parrafo del articulo
+            </p>
+        </section>
+    </article>
+
+    <aside>
+        <!-- El aside es la parte de la pagina donde aparecen publicidades, otras paginas, contenido extra, etc.. -->
+        <h2> Cosas q no le interesan a nadie</h2>
+    </aside>
+
+    <footer>
+        <!-- Esto es el pie de pagina, donde aparecen los derechos de la pagina, redes, etc.. -->
+        <h4>BLABLABLA</h4>
+        <ul>
+            <li>Redes sociales por ejemplo</li>
+        </ul>
+    </footer>
+
+    <!-- si tenemos un texto muy largo, se pueden poner enlaces para ir a otra parte de la pagina, como un indice -->
+
+    <a href="#codigo">Ir a la noticia 2</a>
+    <p>
+        Mucho texto
+    </p>
+
+    <h2 id="codigo">Titulo de la noticia 2</h2>
+    <p>
+        mucho texto
+    </p>
+
+
+    <!-- Para poner iconos adentro de la pagina. Ejemplo: -->
+    <li class="asd"><i class="fas fa-home"></i><a href="#">Inicio</a></li> <!-- fas fa-home. El fas significa q es un icono solido, el fa es de la pagina font awesome, home es el nombre del icono -->
+
+
+    <!-- FLEX BOX -->
+
+    <div class="flex-container">
+        <div class="flex-item">
+            <p>
+                adfs
+            </p>
+        </div>
+    </div>
+
+
+    <script src="NombreDelArchivo.js"></script>
+    <!-- Como enlazar un script de JavaScript -->
+
+</body>
+</html>

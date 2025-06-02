@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>teatro - inicio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h2>Bienvenido,
+            <span th:text="${#authentication.name}"></span>
+            (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'Administrador' : 'Usuario'}"></span>)
+        </h2>
+
+    </header>
+
+    <h1>Próximos Espectáculos</h1>
+
+    <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
+        <a th:href="@{/espectaculo/cargar}">Cargar nuevo espectáculo</a>
+    </div>
+
+    <div th:each="espectaculo : ${espectaculos}" class="contenedor-espectaculo">
+        <h3 th:text="${espectaculo.artista}"></h3>
+        <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy')} + ' - ' + espectaculo.hora"></p>
+        <p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
+        <p th:text="'Precio base: $' + ${espectaculo.precioEntrada}"></p>
+        <p th:text="'Tipo de show: ' + ${espectaculo.tipoShow}"></p>
+        <a th:href="@{'/espectaculo/' + ${espectaculo.id}}">Ver espectáculo</a>
+    </div>
+
+    <footer>
+        <a th:href="@{/logout}">Cerrar sesión</a>
+
+    </footer>
+</body>
+</html>

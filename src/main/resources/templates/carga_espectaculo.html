@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar espectaculo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <form th:action="@{/espectaculo/home}" method="get">
+            <button type="submit">Volver al inicio</button>
+        </form>
+        <h2>Cargar nuevo espectáculo</h2>
+        <div>
+            Usuario: <span th:text="${#authentication.name}"></span>
+        </div>
+    </header>
+
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+    <div th:if="${exito}" style="color: green;">
+        <p th:text="${exito}"></p>
+    </div>
+
+    <form th:action="@{/espectaculo/cargar}" th:object="${espectaculo}" method="post">
+        <label>Artista:</label>
+        <input type="text" th:field="*{artista}" required /><br/>
+
+        <label>Fecha:</label>
+        <input type="date" th:field="*{fecha}" required /><br/>
+
+        <label>Hora:</label>
+        <input type="time" th:field="*{hora}" required /><br/>
+
+        <label>Precio base $</label>
+        <input type="number" step="100" th:field="*{precioEntrada}" required /><br/>
+
+        <label>Duración (minutos):</label>
+        <input type="number" th:field="*{duracionMinutos}" required /><br/>
+
+        <label>Espacio:</label>
+        <select th:field="*{espacio}">
+            <option value="SALA">Sala</option>
+            <option value="ANFITEATRO">Anfiteatro</option>
+        </select><br/>
+
+        <label>Tipo de show:</label>
+        <input type="text" th:field="*{tipoShow}" required /><br/>
+
+        <button type="submit">Confirmar carga</button>
+    </form>
+
+    <footer>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </footer>
+</body>
+</html>

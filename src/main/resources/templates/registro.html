@@ -2,12 +2,12 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro de usuario</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <h2>Registrar un nuevo usuario</h2>
-    <!-- Formulario para crear user -->
+    <!-- Formulario para crear mostrarHome -->
     <form method="post" th:action="@{/registro}">
         Nombre: <input type="text" required="" name="username" /><br>
         Contraseña: <input type="password" required="" name="password" /><br>
