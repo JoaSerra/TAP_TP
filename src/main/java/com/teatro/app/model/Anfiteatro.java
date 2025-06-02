@@ -1,9 +1,11 @@
 package com.teatro.app.model;
 
+
 public class Anfiteatro extends Espacio{
 
     public Anfiteatro(){
         super();
+        setNombre("ANFITEATRO");
         setCapacidad(120);
     }
 

@@ -19,7 +19,7 @@
 Para almacenar los datos voy a utilizar un modelo relacional.  
 Existirá un user administrador que puede cargar espectaculos y otros usuarios que pueden comprar entradas.    
 Cada espectaculo pertenece solo a un espacio que puede ser "Anfiteatro" o "Sala".  
-La entrada contiene el tipo de entrada (1. A;2. B;3. U); el precio total; informacion sobre el espectaculo.
+La entrada contiene el tipo de entrada (1. A;2. B;0. U); el precio total; informacion sobre el espectaculo.
 
 
 ### Tecnologías para el proyecto.

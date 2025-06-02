@@ -1,54 +1,33 @@
 package com.teatro.app.model;
 
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "entradas")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder //Me permite instanciar el objeto mas facilmente
 public class Entrada {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int nroEntrada;
+    private int cantidadEntradas;
+    private double precioTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "espectaculo_id")
     private Espectaculo espectaculo;
-    private Espacio espacio;
-    private User user;
-    private double precio;
 
-    public Entrada(){
-        //this.nroEntrada = ; springBoot numero automatico
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private User usuario;
 
-    }
-    public Entrada(int nroEntrada, Espectaculo espectaculo, double precio){
-        this.nroEntrada = nroEntrada;
-        this.espectaculo = espectaculo;
-        this.precio = precio;
-    }
 
-    public int getNroEntrada() {
-        return nroEntrada;
-    }
-    public void setNroEntrada(int nroEntrada) {
-        this.nroEntrada = nroEntrada;
-    }
-    public Espectaculo getEspectaculo() {
-        return espectaculo;
-    }
-    public void setEspectaculo(Espectaculo espectaculo) {
-        this.espectaculo = espectaculo;
-    }
-    public User getUsuario() {
-        return user;
-    }
-    public void setUsuario(User user) {
-        this.user = user;
-    }
-    public double getPrecio() {
-        return precio;
-    }
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-    public Espacio getEspacio() {
-        return espacio;
-    }
-    public void setEspacio(Espacio espacio) {
-        this.espacio = espacio;
-    }
-
-    //reporteEntradas
 
 }

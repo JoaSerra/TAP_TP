@@ -21,12 +21,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/registro", "/css/**").permitAll()
-                        .requestMatchers("/user").authenticated()
+                        .requestMatchers("/mostrarHome").authenticated()
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN").anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/user", true)
+                        .defaultSuccessUrl("/mostrarHome", true)
                         .permitAll())
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
