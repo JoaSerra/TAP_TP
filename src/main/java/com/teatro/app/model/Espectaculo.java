@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "espectaculos")
@@ -26,6 +27,10 @@ public class Espectaculo {
     private int duracionMin;
     private String tipoShow;
     private String espacio;
+
+    // Lo utilizo para que al eliminar un espectaculo tambien se eliminen las entradas asociadas
+    @OneToMany(mappedBy = "espectaculo", cascade = CascadeType.ALL)
+    private List<Entrada> entradas;
 
 
     @Override

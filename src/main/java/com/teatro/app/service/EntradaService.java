@@ -55,13 +55,11 @@ public class EntradaService {
         Espacio espacio = espacioService.crearConNombre(espectaculo.getEspacio());
         double precioFinal = espacio.calcularPrecioEntrada(cantidad, tipoEntrada, espectaculo.getPrecioBase());
 
-        //Creo la entrada con el builder
-        Entrada entrada = Entrada.builder()
-                .usuario(usuario)
-                .espectaculo(espectaculo)
-                .cantidadEntradas(cantidad)
-                .precioTotal(precioFinal)
-                .build();
+        Entrada entrada = new Entrada();
+        entrada.setUsuario(usuario);
+        entrada.setEspectaculo(espectaculo);
+        entrada.setCantidadEntradas(cantidad);
+        entrada.setPrecioTotal(precioFinal);
 
         return repo.save(entrada);
     }

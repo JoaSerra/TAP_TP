@@ -21,12 +21,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/registro", "/css/**").permitAll()
-                        .requestMatchers("/mostrarHome").authenticated()
-                        .requestMatchers("/admin").hasAuthority("ROLE_ADMIN").anyRequest().authenticated()
+                        .requestMatchers("/espectaculo/**").authenticated()
+                        .requestMatchers("/espectaculo/cargar").hasAuthority("ROLE_ADMIN").anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/mostrarHome", true)
+                        .defaultSuccessUrl("/espectaculo/home", true)
                         .permitAll())
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")

@@ -34,4 +34,7 @@ public class EspectaculoService {
         //Si no hay superposicion devuelve true
     }
 
+    public void deleteById(Long id) {
+        repo.deleteById(id);
+    }
 }

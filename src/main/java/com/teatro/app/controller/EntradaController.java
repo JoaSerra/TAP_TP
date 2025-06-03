@@ -2,6 +2,7 @@ package com.teatro.app.controller;
 
 import com.teatro.app.model.Entrada;
 import com.teatro.app.model.Espectaculo;
+import com.teatro.app.model.SecurityUser;
 import com.teatro.app.model.User;
 import com.teatro.app.service.EntradaService;
 import com.teatro.app.service.EspacioService;
@@ -27,7 +28,8 @@ public class EntradaController {
     private final EspacioService espacioService;
 
     @GetMapping("/mis-entradas")
-    public String verEntradas(@AuthenticationPrincipal User usuario, Model model) {
+    public String verEntradas(@AuthenticationPrincipal SecurityUser userDetails, Model model) {
+        User usuario = userDetails.getUser(); // Obtiene el usuario autenticado
         List<Entrada> entradas = entradaService.findByUsuario(usuario);
         model.addAttribute("entradas", entradas);
         model.addAttribute("hoy", LocalDate.now());
@@ -51,20 +53,21 @@ public class EntradaController {
     public String comprarEntrada(@RequestParam("espectaculoId") Long espectaculoId,
                                  @RequestParam("cantidad") int cantidad,
                                  @RequestParam("tipoEntrada") int tipoEntrada,
-                                 @AuthenticationPrincipal User usuario,
+                                 @AuthenticationPrincipal SecurityUser userDetails,
                                  Model model) {
+        User usuario = userDetails.getUser(); // Obtiene el usuario autenticado
         Espectaculo espectaculo = espectaculoService.findById(espectaculoId);
         if (espectaculo == null) {
             model.addAttribute("error", "Espectáculo no encontrado.");
-            return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo
+            return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo aunque directamente no lo mostraría
         }
-
         try {
             Entrada entrada = entradaService.comprarEntradas(usuario, espectaculo, cantidad, tipoEntrada);
             model.addAttribute("exito", "Compra realizada con éxito.");
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
         }
+        model.addAttribute("espectaculo", espectaculo);
         return "compra_entrada"; // Vuelve a la página de compra con mensaje de éxito o error
     }
 }

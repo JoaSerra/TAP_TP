@@ -50,7 +50,7 @@ public class EspectaculoController {
     }
 
     @GetMapping("/{id}")
-    public String verEspectaculo(@PathVariable Long id, Model model) {
+    public String verEspectaculo(@PathVariable("id") Long id, Model model) {
         Espectaculo espectaculo = espectaculoService.findById(id);
         if (espectaculo == null) {
             model.addAttribute("error", "Espectáculo no encontrado.");
@@ -59,4 +59,12 @@ public class EspectaculoController {
         model.addAttribute("espectaculo", espectaculo);
         return "detalle_espectaculo"; // detalle_espectaculo.html
     }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping("/eliminar/{id}")
+    public String eliminarEspectaculo(@PathVariable("id") Long id) {
+        espectaculoService.deleteById(id);
+        return "redirect:/espectaculo/home"; // Redirige a home después de eliminar
+    }
+
 }

@@ -11,12 +11,11 @@ import java.util.List;
 @Repository
 public interface EspectaculoRepository extends JpaRepository<Espectaculo, Long> {
 
-    Espectaculo findByNombre(String nombre);
     List<Espectaculo> findByFechaAfter(LocalDate fecha);
     List<Espectaculo> findByFechaBefore(LocalDate fecha);
     List<Espectaculo> findByFecha(LocalDate fecha);
 
-    List<Espectaculo> findByEspacioFechas(String espacio, LocalDate fecha);
+    List<Espectaculo> findByEspacioAndFecha(String espacio, LocalDate fecha);
 
     /*Hibernate genera la query automaticamente y devuelve si existe un espectaculo en ese espacio esa fecha entre esas horas */
     boolean existsByEspacioAndFechaAndHoraBetween(String espacio, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin);
