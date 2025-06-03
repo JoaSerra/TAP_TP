@@ -6,33 +6,40 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<header>
-    <form th:action="@{/espectaculo/home}" method="get">
-        <button type="submit">Volver al inicio</button>
-    </form>
-    <h2>Usuario: <span th:text="${#authentication.name}"></span>
-        (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
-</header>
+    <header>
+        <a th:href="@{/espectaculo/home}">
+            <button type="button">Volver al inicio</button>
+        </a>
+        <h2>Usuario: <span th:text="${#authentication.name}"></span>
+            (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
+    </header>
 
-<h1 th:text="${espectaculo.artista}"></h1>
+    <h1 th:text="${espectaculo.artista}"></h1>
 
-<p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy')} + ' - ' + espectaculo.hora"></p>
-<p th:text="'Duración: ' + ${espectaculo.duracionMinutos} + ' minutos'"></p>
-<p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
-<p th:text="'Tipo de show: ' + ${espectaculo.tipoShow}"></p>
-<p th:text="'Precio base: $' + ${espectaculo.precioEntrada}"></p>
+    <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + espectaculo.hora + 'hs'}"></p>
+    <p th:text="'Duración: ' + ${espectaculo.duracionMin} + ' minutos'"></p>
+    <p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
+    <p th:text="'Tipo de show: ' + ${espectaculo.tipoShow}"></p>
+    <p th:text="'Precio base: $' + ${espectaculo.precioBase}"></p>
 
-<div th:if="${espectaculo.fecha > hoy}">
-    <form th:action="@{/entrada/comprar}" method="get">
-        <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
-        <button type="submit">Comprar entrada</button>
-    </form>
-</div>
+    <div th:if="${espectaculo.fecha > hoy}">
+        <form th:action="@{/entrada/comprar}" method="get">
+            <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
+            <button type="submit">Comprar entrada</button>
+        </form>
+    </div>
 
-<footer>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Cerrar sesión</button>
-    </form>
-</footer>
+    <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
+        <form th:action="@{'/espectaculo/eliminar/' + ${espectaculo.id}}" method="post">
+            <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
+            <button type="submit" onclick="return confirm('¿Eliminar este espectáculo?')">Eliminar</button>
+        </form>
+    </div>
+
+    <footer>
+        <a th:href="@{/logout}">
+            <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>
+        </a>
+    </footer>
 </body>
 </html>

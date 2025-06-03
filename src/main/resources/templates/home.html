@@ -11,27 +11,36 @@
             <span th:text="${#authentication.name}"></span>
             (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'Administrador' : 'Usuario'}"></span>)
         </h2>
-
+        <a th:href="@{/entrada/mis-entradas}">
+            <button type="button">Ver mis entradas</button>
+        </a>
     </header>
 
     <h1>Próximos Espectáculos</h1>
 
     <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
-        <a th:href="@{/espectaculo/cargar}">Cargar nuevo espectáculo</a>
+
+        <a th:href="@{/espectaculo/cargar}">
+            <button type="button">Cargar espectaculo</button>
+        </a>
     </div>
 
     <div th:each="espectaculo : ${espectaculos}" class="contenedor-espectaculo">
         <h3 th:text="${espectaculo.artista}"></h3>
-        <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy')} + ' - ' + espectaculo.hora"></p>
+        <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + espectaculo.hora + 'hs'}"></p>
         <p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
-        <p th:text="'Precio base: $' + ${espectaculo.precioEntrada}"></p>
+        <p th:text="'Precio base: $' + ${espectaculo.precioBase}"></p>
         <p th:text="'Tipo de show: ' + ${espectaculo.tipoShow}"></p>
-        <a th:href="@{'/espectaculo/' + ${espectaculo.id}}">Ver espectáculo</a>
+
+        <a th:href="@{'/espectaculo/' + ${espectaculo.id}}">
+            <button type="button">Ver espectaculo</button>
+        </a>
     </div>
 
     <footer>
-        <a th:href="@{/logout}">Cerrar sesión</a>
-
+        <a th:href="@{/logout}">
+            <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>
+        </a>
     </footer>
 </body>
 </html>

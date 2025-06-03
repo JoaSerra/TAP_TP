@@ -6,55 +6,55 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<header>
-    <form th:action="@{/espectaculo/home}" method="get">
-        <button type="submit">Volver al inicio</button>
+    <header>
+        <a th:href="@{/espectaculo/home}">
+            <button type="button">Volver al inicio</button>
+        </a>
+        <h2>Usuario: <span th:text="${#authentication.name}"></span>
+            (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
+    </header>
+
+    <h1 th:text="${espectaculo.artista}"></h1>
+    <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + espectaculo.hora + 'hs'}"></p>
+    <p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
+    <p th:text="'Precio base: $' + ${espectaculo.precioBase}"></p>
+
+    <form th:action="@{/entrada/comprar}" method="post">
+        <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
+
+        <label for="cantidad">Cantidad (máx. 5):</label>
+        <select name="cantidad" id="cantidad" required>
+            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
+        </select><br/>
+
+        <div th:if="${espectaculo.espacio == 'SALA'}">
+            <label>Tipo de entrada:</label>
+            <select name="tipoEntrada" required>
+                <option value="1">Tipo A (doble precio)</option>
+                <option value="2">Tipo B (precio base)</option>
+            </select>
+        </div>
+
+        <div th:if="${espectaculo.espacio == 'ANFITEATRO'}">
+            <input type="hidden" name="tipoEntrada" value="0" />
+            <p>Precio único.</p>
+        </div>
+
+        <button type="submit" onclick="return confirm('¿Comprar entrada/s?')">Confirmar compra</button>
     </form>
-    <h2>Usuario: <span th:text="${#authentication.name}"></span>
-        (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
-</header>
 
-<h1 th:text="${espectaculo.artista}"></h1>
-<p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy')} + ' - ' + espectaculo.hora"></p>
-<p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
-<p th:text="'Precio base: $' + ${espectaculo.precioEntrada}"></p>
-
-<form th:action="@{/entrada/comprar}" method="post">
-    <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
-
-    <label for="cantidad">Cantidad (máx. 5):</label>
-    <select name="cantidad" id="cantidad" required>
-        <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
-    </select><br/>
-
-    <div th:if="${espectaculo.espacio == 'SALA'}">
-        <label>Tipo de entrada:</label>
-        <select name="tipoEntrada" required>
-            <option value="1">Tipo A (doble precio)</option>
-            <option value="2">Tipo B (precio base)</option>
-        </select>
+    <div th:if="${exito}" style="color: green;">
+        <p th:text="${exito}"></p>
+    </div>
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
     </div>
 
-    <div th:if="${espectaculo.espacio == 'ANFITEATRO'}">
-        <input type="hidden" name="tipoEntrada" value="0" />
-        <p>Precio único.</p>
-    </div>
-
-    <button type="submit">Confirmar compra</button>
-</form>
-
-<div th:if="${exito}" style="color: green;">
-    <p th:text="${exito}"></p>
-</div>
-<div th:if="${error}" style="color: red;">
-    <p th:text="${error}"></p>
-</div>
-
-<footer>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Cerrar sesión</button>
-    </form>
-</footer>
+    <footer>
+        <a th:href="@{/logout}">
+            <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>
+        </a>
+    </footer>
 </body>
 
 </html>

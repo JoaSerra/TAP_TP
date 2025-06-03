@@ -6,36 +6,40 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<header>
-    <form th:action="@{/espectaculo/home}" method="get">
-        <button type="submit">Volver al inicio</button>
-    </form>
-    <h2>Usuario: <span th:text="${#authentication.name}"></span>
-        (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
-</header>
+    <header>
+        <a th:href="@{/espectaculo/home}">
+            <button type="button">Volver al inicio</button>
+        </a>
 
-<h1>Mis Entradas</h1>
+        <h2>Usuario: <span th:text="${#authentication.name}"></span>
+            (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
+    </header>
 
-<div th:each="entrada : ${entradas}">
-    <h3 th:text="${entrada.espectaculo.artista}"></h3>
-    <p th:text="${#temporals.format(entrada.espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy')} + ' - ' + entrada.espectaculo.hora"></p>
-    <p th:text="'Espacio: ' + ${entrada.espectaculo.espacio}"></p>
-    <p th:text="'Cantidad: ' + ${entrada.cantidad}"></p>
-    <p th:text="'Precio total: $' + ${entrada.precioTotal}"></p>
-
-    <div th:if="${entrada.espectaculo.fecha > hoy}">
-        <p style="color: green;">Próximo espectáculo</p>
-    </div>
-    <div th:if="${entrada.espectaculo.fecha <= hoy}">
-        <p style="color: gray;">Espectáculo pasado</p>
+    <h1>Mis Entradas</h1>
+    <div th:if="${#lists.isEmpty(entradas)}">
+        <h4>Todavía no has comprado ninguna entrada.</h4>
     </div>
     <hr/>
-</div>
+    <div th:each="entrada : ${entradas}">
+        <h3 th:text="${entrada.espectaculo.artista}"></h3>
+        <p th:text="${#temporals.format(entrada.espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + entrada.espectaculo.hora + 'hs'}"></p>
+        <p th:text="'Espacio: ' + ${entrada.espectaculo.espacio}"></p>
+        <p th:text="'Cantidad: ' + ${entrada.cantidadEntradas}"></p>
+        <p th:text="'Precio total: $' + ${entrada.precioTotal}"></p>
 
-<footer>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Cerrar sesión</button>
-    </form>
-</footer>
+        <div th:if="${entrada.espectaculo.fecha > hoy}">
+            <p style="color: green;">Espectaculo programado</p>
+        </div>
+        <div th:if="${entrada.espectaculo.fecha <= hoy}">
+            <p style="color: gray;">Espectáculo pasado</p>
+        </div>
+        <hr/>
+    </div>
+
+    <footer>
+        <a th:href="@{/logout}">
+            <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>
+        </a>
+    </footer>
 </body>
 </html>

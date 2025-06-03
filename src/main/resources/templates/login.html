@@ -15,8 +15,8 @@
     </form>
     <br>
     <!-- Botón que redirige al formulario de registro -->
-    <form method="get" th:action="@{/registro}">
-        <button type="submit">Crear usuario</button>
-    </form>
+    <a th:href="@{/registro}">
+        <button type="button">Crear usuario</button>
+    </a>
 </body>
 </html>

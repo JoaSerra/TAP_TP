@@ -7,9 +7,9 @@
 </head>
 <body>
     <header>
-        <form th:action="@{/espectaculo/home}" method="get">
-            <button type="submit">Volver al inicio</button>
-        </form>
+        <a th:href="@{/espectaculo/home}">
+            <button type="button">Volver al inicio</button>
+        </a>
         <h2>Cargar nuevo espectáculo</h2>
         <div>
             Usuario: <span th:text="${#authentication.name}"></span>
@@ -34,10 +34,10 @@
         <input type="time" th:field="*{hora}" required /><br/>
 
         <label>Precio base $</label>
-        <input type="number" step="100" th:field="*{precioEntrada}" required /><br/>
+        <input type="number" step="100" th:field="*{precioBase}" required /><br/>
 
         <label>Duración (minutos):</label>
-        <input type="number" th:field="*{duracionMinutos}" required /><br/>
+        <input type="number" th:field="*{duracionMin}" required /><br/>
 
         <label>Espacio:</label>
         <select th:field="*{espacio}">
@@ -48,13 +48,13 @@
         <label>Tipo de show:</label>
         <input type="text" th:field="*{tipoShow}" required /><br/>
 
-        <button type="submit">Confirmar carga</button>
+        <button type="submit" onclick="return confirm('¿Cargar espectaculo?')">Confirmar carga</button>
     </form>
 
     <footer>
-        <form th:action="@{/logout}" method="post">
-            <button type="submit">Cerrar sesión</button>
-        </form>
+        <a th:href="@{/logout}">
+            <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>
+        </a>
     </footer>
 </body>
 </html>
