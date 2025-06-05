@@ -1,0 +1,24 @@
+Acceder a la base PostgreSQL con pgadmin
+
+localhost:5050
+
+email: admin@teatro.com
+pass: admin123
+
+"add new server"
+
+general -> name: postgres-teatro
+
+connection -> host name/address: postgres-teatro
+		port: 5432 
+		maintenance database: postgres
+		username: teatro
+		password: admin
+"Save"
+
+Ahora a la izquierda despliego en el arbol:
+
+Servers -> postgres-teatro -> Databases -> teatrodb -> Schemas -> public -> Tables
+
+Acá veo las tablas y puedo hacer click derecho y Query tool para ejecutar
+SELECT * from ...

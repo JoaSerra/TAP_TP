@@ -16,10 +16,12 @@
     </header>
 
     <h1>Mis Entradas</h1>
+    <hr/>
+
     <div th:if="${#lists.isEmpty(entradas)}">
         <h4>Todavía no has comprado ninguna entrada.</h4>
     </div>
-    <hr/>
+
     <div th:each="entrada : ${entradas}">
         <h3 th:text="${entrada.espectaculo.artista}"></h3>
         <p th:text="${#temporals.format(entrada.espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + entrada.espectaculo.hora + 'hs'}"></p>
