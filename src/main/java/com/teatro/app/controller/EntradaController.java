@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -42,8 +43,7 @@ public class EntradaController {
                                 Model model) {
         Espectaculo espectaculo = espectaculoService.findById(espectaculoId);
         if(espectaculo == null) {
-            model.addAttribute("error", "Espectáculo no encontrado.");
-            return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo
+            return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo. No debería llegar a esta página si no existe el espectáculo.
         }
         model.addAttribute("espectaculo", espectaculo);
         return "compra_entrada"; // compra_entrada.html
@@ -54,20 +54,22 @@ public class EntradaController {
                                  @RequestParam("cantidad") int cantidad,
                                  @RequestParam("tipoEntrada") int tipoEntrada,
                                  @AuthenticationPrincipal SecurityUser userDetails,
+                                 RedirectAttributes redirectAttributes,
                                  Model model) {
         User usuario = userDetails.getUser(); // Obtiene el usuario autenticado
         Espectaculo espectaculo = espectaculoService.findById(espectaculoId);
         if (espectaculo == null) {
-            model.addAttribute("error", "Espectáculo no encontrado.");
+            redirectAttributes.addFlashAttribute("error", "Espectáculo no encontrado.");
             return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo aunque directamente no lo mostraría
         }
         try {
             Entrada entrada = entradaService.comprarEntradas(usuario, espectaculo, cantidad, tipoEntrada);
-            model.addAttribute("exito", "Compra realizada con éxito.");
+            redirectAttributes.addFlashAttribute("exito", "Entradas compradas con exito!!!");
         } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         model.addAttribute("espectaculo", espectaculo);
-        return "compra_entrada"; // Vuelve a la página de compra con mensaje de éxito o error
+        return "redirect:/entrada/comprar?espectaculoId=" + espectaculoId;
+
     }
 }

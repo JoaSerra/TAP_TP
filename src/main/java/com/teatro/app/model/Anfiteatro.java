@@ -11,7 +11,7 @@ public class Anfiteatro extends Espacio{
 
     @Override
     public double calcularPrecioEntrada(int cantidadEntradas, int tipoEntrada, double precioBase) {
-        if(tipoEntrada == 0){ // Entrada Unica
+        if(tipoEntrada == 2){ // Entrada General
             return cantidadEntradas * precioBase;
         }else
             return 0; // No se permite otro tipo de entrada en Anfiteatro

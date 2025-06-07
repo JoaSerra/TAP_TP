@@ -44,12 +44,14 @@ public class EntradaService {
     public Entrada comprarEntradas(User usuario, Espectaculo espectaculo, int cantidad, int tipoEntrada) {
 
         //Validar la capacidad
-        int vendidas = repo.countByEspectaculoId(espectaculo.getId());
+        int vendidas = repo.sumarEntradasPorEspectaculo(espectaculo.getId());
         int capacidadMaxima = espacioService.getCapacidad(espectaculo.getEspacio());
 
         if (vendidas + cantidad > capacidadMaxima) {
             throw new IllegalArgumentException("No hay suficientes entradas disponibles.");
         }
+
+        int siguienteNroEntrada = vendidas + 1;
 
         //Calculo el precio total de la entrada
         Espacio espacio = espacioService.crearConNombre(espectaculo.getEspacio());
@@ -60,6 +62,8 @@ public class EntradaService {
         entrada.setEspectaculo(espectaculo);
         entrada.setCantidadEntradas(cantidad);
         entrada.setPrecioTotal(precioFinal);
+        entrada.setNroEntrada(siguienteNroEntrada);
+        entrada.setNroEntrada(tipoEntrada);
 
         return repo.save(entrada);
     }

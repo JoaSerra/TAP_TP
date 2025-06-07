@@ -15,9 +15,9 @@ public class Sala extends Espacio{
 
     @Override
     public double calcularPrecioEntrada(int cantidadEntradas, int tipoEntrada, double precioBase) {
-        if (tipoEntrada == 1) //Entrada tipo A
+        if (tipoEntrada == 1) //Entrada Preferencial
             return cantidadEntradas * (precioBase * 2);
-        else if(tipoEntrada == 2) //Entrada tipo B
+        else if(tipoEntrada == 2) //Entrada general
             return (cantidadEntradas * precioBase);
         else
             return 0; // No se permite otro tipo de entrada en Sala

@@ -15,7 +15,7 @@ public abstract class Espacio {
 
     private String nombre;
     private int capacidad;
-    private int tipoEntrada; // 0- tipo Unico, 1- tipo A, 2- tipo B
+    private int tipoEntrada; // 1: Preferencial, 2: General
 
     public abstract double calcularPrecioEntrada(int cantidadEntradas, int tipoEntrada, double precioBase);
 }

@@ -25,7 +25,7 @@
 
     <form th:action="@{/espectaculo/cargar}" th:object="${espectaculo}" method="post">
         <label>Artista:</label>
-        <input type="text" th:field="*{artista}" required /><br/>
+        <input type="text" name="Nombre del artista" th:field="*{artista}" required /><br/>
 
         <label>Fecha:</label>
         <input type="date" th:field="*{fecha}" required /><br/>
@@ -34,10 +34,10 @@
         <input type="time" th:field="*{hora}" required /><br/>
 
         <label>Precio base $</label>
-        <input type="number" step="100" th:field="*{precioBase}" required /><br/>
+        <input type="number" step="100" name="0" th:field="*{precioBase}" required /><br/>
 
         <label>Duración (minutos):</label>
-        <input type="number" th:field="*{duracionMin}" required /><br/>
+        <input type="number" name="0" th:field="*{duracionMin}" required /><br/>
 
         <label>Espacio:</label>
         <select th:field="*{espacio}">
@@ -46,8 +46,12 @@
         </select><br/>
 
         <label>Tipo de show:</label>
-        <input type="text" th:field="*{tipoShow}" required /><br/>
+        <input type="text" name="Musical, infantil, etc." th:field="*{tipoShow}" required /><br/>
 
+        <div th:if="${exito}" class="exito" th:text="${exito}"></div>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+
+        <br>
         <button type="submit" onclick="return confirm('¿Cargar espectaculo?')">Confirmar carga</button>
     </form>
 

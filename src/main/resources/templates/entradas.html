@@ -19,14 +19,16 @@
     <hr/>
 
     <div th:if="${#lists.isEmpty(entradas)}">
-        <h4>Todavía no has comprado ninguna entrada.</h4>
+        <h3>Todavía no has comprado ninguna entrada.</h3>
     </div>
 
     <div th:each="entrada : ${entradas}">
         <h3 th:text="${entrada.espectaculo.artista}"></h3>
+        <p th:text="'Nro. de entrada: ' + ${entrada.nroEntrada} + ' a ' + (${entrada.nroEntrada + entrada.cantidadEntradas - 1})"></p>
         <p th:text="${#temporals.format(entrada.espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + entrada.espectaculo.hora + 'hs'}"></p>
         <p th:text="'Espacio: ' + ${entrada.espectaculo.espacio}"></p>
         <p th:text="'Cantidad: ' + ${entrada.cantidadEntradas}"></p>
+        <p th:text="'Tipo: ' + (${entrada.tipoEntrada == 1 ? 'Preferencial' : 'General'})"></p>
         <p th:text="'Precio total: $' + ${entrada.precioTotal}"></p>
 
         <div th:if="${entrada.espectaculo.fecha > hoy}">

@@ -7,16 +7,26 @@
 </head>
 <body>
     <h2>Iniciar sesión</h2>
+    <!-- Botón que redirige al formulario de registro -->
+    <a th:href="@{/registro}">
+        <button type="button" class="boton_login">Crear usuario</button>
+    </a>
+    <br><br>
     <!-- Formulario de login -->
     <form method="post" th:action="@{/login}">
-        Usuario: <input type="text" required="" name="username" /><br>
-        Contraseña: <input type="password" required="" name="password" /><br>
+        <label>Nombre de usuario:</label>
+        <input type="text" required="" name="username" /><br>
+
+        <label>Contraseña:</label>
+        <input type="password" required="" name="password" /><br>
+
+        <div th:if="${param.error}" class="error">
+            Usuario o contraseña incorrectos.
+        </div>
+
+        <br>
         <button type="submit">Ingresar</button>
     </form>
     <br>
-    <!-- Botón que redirige al formulario de registro -->
-    <a th:href="@{/registro}">
-        <button type="button">Crear usuario</button>
-    </a>
 </body>
 </html>

@@ -18,6 +18,12 @@
 
     <h1>Próximos Espectáculos</h1>
 
+    <hr/>
+
+    <div th:if="${#lists.isEmpty(espectaculos)}">
+        <h3>No hay espectaculos programados</h3>
+    </div>
+
     <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
 
         <a th:href="@{/espectaculo/cargar}">

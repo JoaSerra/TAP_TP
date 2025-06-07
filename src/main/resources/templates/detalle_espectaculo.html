@@ -28,14 +28,14 @@
             <button type="submit">Comprar entrada</button>
         </form>
     </div>
-
+    <br>
     <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
         <form th:action="@{'/espectaculo/eliminar/' + ${espectaculo.id}}" method="post">
             <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
-            <button type="submit" onclick="return confirm('¿Eliminar este espectáculo?')">Eliminar</button>
+            <button type="submit" onclick="return confirm('Esto eliminará todas las entradas vinculadas \n¿Eliminar este espectáculo?')">Eliminar</button>
         </form>
     </div>
-
+    <br>
     <footer>
         <a th:href="@{/logout}">
             <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>

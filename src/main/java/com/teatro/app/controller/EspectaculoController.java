@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,15 +39,14 @@ public class EspectaculoController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/cargar")
-    public String cargarEspectaculo(@ModelAttribute Espectaculo espectaculo, Model model) {
-        // Vuelve al formulario con un mensaje de error
+    public String cargarEspectaculo(@ModelAttribute Espectaculo espectaculo, RedirectAttributes redirectAttributes) {
         if (espectaculoService.puedeGuardar(espectaculo)) {
             espectaculoService.save(espectaculo);
-            model.addAttribute("exito", "Espectáculo cargado correctamente.");
+            redirectAttributes.addFlashAttribute("exito", "Espectáculo cargado correctamente!!!");
         } else {
-            model.addAttribute("error", "El horario del espectáculo se superpone con otro ya existente.");
+            redirectAttributes.addFlashAttribute("error", "El horario del espectáculo se superpone con otro ya existente.");
         }
-        return "carga_espectaculo"; // Vuelve al formulario con el mensaje (exito o error)
+        return "redirect:carga_espectaculo"; // Vuelve al formulario con el mensaje (exito o error)
     }
 
     @GetMapping("/{id}")

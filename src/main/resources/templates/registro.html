@@ -7,11 +7,25 @@
 </head>
 <body>
     <h2>Registrar un nuevo usuario</h2>
-    <!-- Formulario para crear mostrarHome -->
+
+    <p>Ya tengo un usuario</p>
+    <a th:href="@{/login}">
+        <button type="button" class="boton_login">Volver al login</button>
+    </a>
+    <br>
+
     <form method="post" th:action="@{/registro}">
-        Nombre: <input type="text" required="" name="username" /><br>
-        Contraseña: <input type="password" required="" name="password" /><br>
-        <button type="submit">Registrarse</button>
+        <label>Nombre de usuario:</label>
+        <input type="text" required="" name="username" /><br>
+
+        <label>Contraseña:</label>
+        <input type="password" required="" name="password" /><br>
+
+        <div th:if="${exito}" class="exito" th:text="${exito}"></div>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+
+        <br>
+        <button type="submit">Registrar usuario</button>
     </form>
 </body>
 </html>

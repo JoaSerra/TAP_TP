@@ -31,10 +31,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (!userRepository.existsByUsername("admin")) {
             User admin = new User();
             admin.setUsername("admin");
-            admin.setPassword("{noop}admin"); // Cambiar por BCrypt luego
+            admin.setPassword("{noop}admin"); // noop para no encriptar la contraseña
             admin.setRole("ADMIN");
             userRepository.save(admin);
         }
+    }
+
+    @PostConstruct
+    public void crearUserPorDefecto() {
+        if (!userRepository.existsByUsername("user")) {
+            User user = new User();
+            user.setUsername("user");
+            user.setPassword("{noop}user"); // noop para no encriptar la contraseña
+            user.setRole("USUARIO");
+            userRepository.save(user);
+        }
+
     }
 
 }

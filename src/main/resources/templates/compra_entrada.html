@@ -30,26 +30,24 @@
         <div th:if="${espectaculo.espacio == 'SALA'}">
             <label>Tipo de entrada:</label>
             <select name="tipoEntrada" required>
-                <option value="1">Tipo A (doble precio)</option>
-                <option value="2">Tipo B (precio base)</option>
+                <option value="1">Entrada preferencial</option>
+                <option value="2">Entrada general</option>
             </select>
         </div>
 
         <div th:if="${espectaculo.espacio == 'ANFITEATRO'}">
-            <input type="hidden" name="tipoEntrada" value="0" />
-            <p>Precio único.</p>
+            <input type="hidden" name="tipoEntrada" value="2" />
+            <p>Entrada general</p>
         </div>
 
+        <div th:if="${exito}" class="exito" th:text="${exito}"></div>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+
+        <br>
         <button type="submit" onclick="return confirm('¿Comprar entrada/s?')">Confirmar compra</button>
     </form>
 
-    <div th:if="${exito}" style="color: green;">
-        <p th:text="${exito}"></p>
-    </div>
-    <div th:if="${error}" style="color: red;">
-        <p th:text="${error}"></p>
-    </div>
-
+    <br>
     <footer>
         <a th:href="@{/logout}">
             <button type="button" onclick="return confirm('¿Cerrar sesion?')">Cerrar sesion</button>

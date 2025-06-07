@@ -19,19 +19,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth /*Defino quien tiene acceso a los endpoints*/
+                        /*Permite el acceso a usuarios no autenticados a las paginas de login y registro (/ redirige a /login)*/
                         .requestMatchers("/", "/login", "/registro", "/css/**").permitAll()
-                        .requestMatchers("/espectaculo/**").authenticated()
-                        .requestMatchers("/espectaculo/cargar").hasAuthority("ROLE_ADMIN").anyRequest().authenticated()
+                        .requestMatchers("/espectaculo/**", "/entrada/**").authenticated() /*Requiere autenticacion para acceder a estos endpoints*/
+                        .requestMatchers("/espectaculo/cargar").hasAuthority("ROLE_ADMIN").anyRequest().authenticated() /*Solo los administradores pueden acceder a /cargar*/
                 )
                 .formLogin(login -> login
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/espectaculo/home", true)
+                        .loginPage("/login") /*Utiliza el template login.html*/
+                        .defaultSuccessUrl("/espectaculo/home", true) /*Redirige a home si hay login exitoso*/
+                        .failureUrl("/login?error") /*Redirige a login con error si falla el login*/
                         .permitAll())
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                 )
-
                 .build();
     }
 }
