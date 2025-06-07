@@ -14,31 +14,43 @@
 
 ## Pasos para levantar la API
 
-Es un prerequisito fundamental tener instalado el motor de Docker
+1. Prerequisito fundamental tener instalado el motor de Docker
+   * Para Linux
+     * Puede instalarse y activarse por consola ejecutando
 
-* Para Linux
-  * Puede instalarse y activarse por consola ejecutando
+       ```bash
+       sudo apt install docker.io
+       sudo systemctl enable docker
+       sudo systemctl start docker
+       ```
 
-    ```bash
-    sudo apt install docker.io
-    sudo systemctl enable docker
-    sudo systemctl start docker
-    ```
+   * Para Windows
+     * Docker desktop con Windows Subsystem for Linux (WLS) configurado
+   * Para Mac/OS
+     * Docker desktop para Mac
+   * Puede descargarse en https://www.docker.com/products/docker*desktop/
 
-* Para Windows
-  * Docker desktop con Windows Subsystem for Linux (WLS) configurado
-* Para Mac/OS
-  * Docker desktop para Mac
-* Puede descargarse en https://www.docker.com/products/docker*desktop/
 
-**IMPORTANTE!**   
-Para que el proyecto levante correctamente se debe renombrar el archivo “.env.example” a “.env”, en este podrá modificar el usuario y la contraseña para acceder a la base de datos.  
-Además puede modificar el puerto externo para acceder a la app (por defecto lo hace en el puerto 8081).
+2. Para que el proyecto levante correctamente se debe renombrar el archivo “.env.example” a “.env” 
+   * En este podrá modificar el usuario y la contraseña para acceder a la base de datos.  
+   * Además puede modificar el puerto externo para acceder a la app (por defecto lo hace en el puerto 8081).
 
-Una vez corriendo el motor de Docker, dirigirse a la raiz del proyecto y ejecutar el comando `docker compose up **build`  
-Este comando va a instalar y levantar un contenedor con las imagenes necesarias, dependencias y configuraciones
 
-Una vez levantado el contenedor ya puede acceder a [localhost:8081](http://localhost:8081/) (por defecto) o el puerto configurado en el archivo “.env”
+3. Con el motor de Docker corriendo, dirigirse a la raiz del proyecto y ejecutar el comando `docker compose up --build`  
+   * Este comando va a instalar y levantar un contenedor con las imagenes necesarias, dependencias y configuraciones
+
+
+4. Una vez levantado el contenedor ya puede acceder a [localhost:8081](http://localhost:8081/) (por defecto) o el puerto configurado en el archivo “.env”
+
+
+5. Para acceder a la base de datos puede acceder con PgAdmin.
+   * Paso a paso en [acceso PgAdmin](src/main/resources/static/acceso_pgAdmin.txt)
+
+
+6. En la misma terminal donde se ejecutó el comando anterior 
+   * Presione `Ctrl + C` para detener el contenedor.
+   * Ejecute `docker compose down` para eliminar el contenedor y liberar los recursos del sistema.
+
 
 
 ## Diagrama de clases

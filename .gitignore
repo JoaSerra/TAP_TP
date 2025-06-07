@@ -10,9 +10,10 @@
 *.so
 
 # Archivos locales
-#comandosGit.md
+comandosGit.md
 src/main/resources/static/images/DC_teatro.drawio
-src/main/resources/templates/Apuntes HTML.html
+src/main/resources/templates/Apuntes_HTML.html
+TAP_TP lo que falta.txt
 
 # Maven
 target/

@@ -1,7 +1,6 @@
 Acceder a la base PostgreSQL con pgadmin
 
-localhost:5050
-
+Abrir https://localhost:5050
 email: admin@teatro.com
 pass: admin123
 
