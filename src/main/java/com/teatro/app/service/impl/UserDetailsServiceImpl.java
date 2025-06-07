@@ -1,7 +1,7 @@
 package com.teatro.app.service.impl;
 
 
-import com.teatro.app.model.SecurityUser;
+import com.teatro.app.model.security.SecurityUser;
 import com.teatro.app.model.User;
 import com.teatro.app.repository.UserRepository;
 import jakarta.annotation.PostConstruct;

@@ -1,5 +1,6 @@
-package com.teatro.app.model;
+package com.teatro.app.model.security;
 
+import com.teatro.app.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -28,16 +28,8 @@ public class Espectaculo {
     private String tipoShow;
     private String espacio;
 
-    // Lo utilizo para que al eliminar un espectaculo tambien se eliminen las entradas asociadas
+    // Lo utilizo para que al eliminar un espectaculo tambien se eliminen todas las entradas asociadas y no haya problemas
     @OneToMany(mappedBy = "espectaculo", cascade = CascadeType.ALL)
     private List<Entrada> entradas;
-
-
-    @Override
-    public String toString() {
-        return "Espectaculo de '" + artista + "'" +
-                "el dia " + fecha + "a las " + hora +
-                "\nshow " + tipoShow + "en " + espacio;
-    }
 
 }

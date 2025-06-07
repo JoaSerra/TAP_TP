@@ -2,7 +2,7 @@ package com.teatro.app.controller;
 
 import com.teatro.app.model.Entrada;
 import com.teatro.app.model.Espectaculo;
-import com.teatro.app.model.SecurityUser;
+import com.teatro.app.model.security.SecurityUser;
 import com.teatro.app.model.User;
 import com.teatro.app.service.EntradaService;
 import com.teatro.app.service.EspacioService;
