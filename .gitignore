@@ -11,7 +11,8 @@
 
 # Archivos locales
 #comandosGit.md
-src/main/resources/static/images/Gestion espectaculos TAP.drawio
+src/main/resources/static/images/DC_teatro.drawio
+src/main/resources/templates/Apuntes HTML.html
 
 # Maven
 target/

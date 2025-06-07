@@ -12,8 +12,7 @@
 
 ---
 ### Diagrama de clases
-
-![Diagrama](src/main/resources/static/images/diagramaClasesTAP_TP.jpg)
+![Imagen del diagrama de clases](src/main/resources/static/images/diagramaClasesTAP_TP.jpg)  
 
 ### Modelo de datos
 Para almacenar los datos voy a utilizar un modelo relacional.  

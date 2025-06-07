@@ -11,13 +11,16 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+# Utiliza variables de entorno para las configuraciones
+# Se encuentran en el archivo .env
+
   app-teatro:
     build: .
     container_name: app-teatro
     depends_on:
       - postgres-teatro
     ports:
-      - "8081:8081"
+      - ${APP_PUERTO}:8080
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
@@ -28,8 +31,8 @@ services:
     container_name: pgadmin-teatro
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@teatro.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "5050:80"
 
