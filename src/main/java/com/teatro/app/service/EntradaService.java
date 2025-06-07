@@ -63,7 +63,7 @@ public class EntradaService {
         entrada.setCantidadEntradas(cantidad);
         entrada.setPrecioTotal(precioFinal);
         entrada.setNroEntrada(siguienteNroEntrada);
-        entrada.setNroEntrada(tipoEntrada);
+        entrada.setTipoEntrada(tipoEntrada);
 
         return repo.save(entrada);
     }
