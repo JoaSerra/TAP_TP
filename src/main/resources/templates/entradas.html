@@ -32,10 +32,10 @@
         <p th:text="'Precio total: $' + ${entrada.precioTotal}"></p>
 
         <div th:if="${entrada.espectaculo.fecha > hoy}">
-            <p style="color: green;">Espectaculo programado</p>
+            <p class="exito">Espectaculo programado</p>
         </div>
         <div th:if="${entrada.espectaculo.fecha <= hoy}">
-            <p style="color: gray;">Espectáculo pasado</p>
+            <p class="error">Espectáculo pasado</p>
         </div>
         <hr/>
     </div>

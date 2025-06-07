@@ -16,12 +16,9 @@
         </div>
     </header>
 
-    <div th:if="${error}" style="color: red;">
-        <p th:text="${error}"></p>
-    </div>
-    <div th:if="${exito}" style="color: green;">
-        <p th:text="${exito}"></p>
-    </div>
+    <br>
+    <div th:if="${exito}" class="exito" th:text="${exito}"></div>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
 
     <form th:action="@{/espectaculo/cargar}" th:object="${espectaculo}" method="post">
         <label>Artista:</label>
@@ -47,9 +44,6 @@
 
         <label>Tipo de show:</label>
         <input type="text" name="Musical, infantil, etc." th:field="*{tipoShow}" required /><br/>
-
-        <div th:if="${exito}" class="exito" th:text="${exito}"></div>
-        <div th:if="${error}" class="error" th:text="${error}"></div>
 
         <br>
         <button type="submit" onclick="return confirm('¿Cargar espectaculo?')">Confirmar carga</button>

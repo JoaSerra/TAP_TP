@@ -36,7 +36,7 @@ public class PublicController {
     @GetMapping("/error")
     public String mostrarError(Model model) {
         model.addAttribute("error", "Ocurrió un error inesperado. Por favor, inténtelo de nuevo más tarde.");
-        return "error"; // Retorna la vista de error
+        return "error";
     }
 
     @PostMapping("/registro")

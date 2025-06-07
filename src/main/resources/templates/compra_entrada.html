@@ -14,6 +14,9 @@
             (<span th:text="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')') ? 'ADMIN' : 'USUARIO'}"></span>)</h2>
     </header>
 
+    <br>
+    <div th:if="${exito}" class="exito" th:text="${exito}"></div>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
     <h1 th:text="${espectaculo.artista}"></h1>
     <p th:text="${#temporals.format(espectaculo.fecha, 'EEEE d ''de'' MMMM ''de'' yyyy') + ' - ' + espectaculo.hora + 'hs'}"></p>
     <p th:text="'Espacio: ' + ${espectaculo.espacio}"></p>
@@ -21,11 +24,6 @@
 
     <form th:action="@{/entrada/comprar}" method="post">
         <input type="hidden" name="espectaculoId" th:value="${espectaculo.id}" />
-
-        <label for="cantidad">Cantidad (máx. 5):</label>
-        <select name="cantidad" id="cantidad" required>
-            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
-        </select><br/>
 
         <div th:if="${espectaculo.espacio == 'SALA'}">
             <label>Tipo de entrada:</label>
@@ -40,8 +38,10 @@
             <p>Entrada general</p>
         </div>
 
-        <div th:if="${exito}" class="exito" th:text="${exito}"></div>
-        <div th:if="${error}" class="error" th:text="${error}"></div>
+        <label for="cantidad">Cantidad (máx. 5):</label>
+        <select name="cantidad" id="cantidad" required>
+            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
+        </select><br/>
 
         <br>
         <button type="submit" onclick="return confirm('¿Comprar entrada/s?')">Confirmar compra</button>

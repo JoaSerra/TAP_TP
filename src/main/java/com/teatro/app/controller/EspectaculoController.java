@@ -46,7 +46,7 @@ public class EspectaculoController {
         } else {
             redirectAttributes.addFlashAttribute("error", "El horario del espectáculo se superpone con otro ya existente.");
         }
-        return "redirect:carga_espectaculo"; // Vuelve al formulario con el mensaje (exito o error)
+        return "redirect:/espectaculo/cargar"; // Vuelve al formulario con el mensaje (exito o error)
     }
 
     @GetMapping("/{id}")
