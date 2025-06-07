@@ -10,18 +10,68 @@
 **Primera entrega**: 28/04  
 **Segunda entrega**: 09/06
 
----
-### Diagrama de clases
-![Imagen del diagrama de clases](src/main/resources/static/images/diagramaClasesTAP_TP.jpg)  
+***
 
-### Modelo de datos
+## Pasos para levantar la API
+
+Es un prerequisito fundamental tener instalado el motor de Docker
+
+* Para Linux
+  * Puede instalarse y activarse por consola ejecutando
+
+    ```bash
+    sudo apt install docker.io
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    ```
+
+* Para Windows
+  * Docker desktop con Windows Subsystem for Linux (WLS) configurado
+* Para Mac/OS
+  * Docker desktop para Mac
+* Puede descargarse en https://www.docker.com/products/docker*desktop/
+
+**IMPORTANTE!**   
+Para que el proyecto levante correctamente se debe renombrar el archivo “.env.example” a “.env”, en este podrá modificar el usuario y la contraseña para acceder a la base de datos.  
+Además puede modificar el puerto externo para acceder a la app (por defecto lo hace en el puerto 8081).
+
+Una vez corriendo el motor de Docker, dirigirse a la raiz del proyecto y ejecutar el comando `docker compose up **build`  
+Este comando va a instalar y levantar un contenedor con las imagenes necesarias, dependencias y configuraciones
+
+Una vez levantado el contenedor ya puede acceder a [localhost:8081](http://localhost:8081/) (por defecto) o el puerto configurado en el archivo “.env”
+
+
+## Diagrama de clases
+![Imagen del diagrama de clases](src/main/resources/static/images/DC_teatro.jpg)    
+
+## Modelo de datos
 Para almacenar los datos voy a utilizar un modelo relacional.  
-Existirá un user administrador que puede cargar espectaculos y otros usuarios que pueden comprar entradas.    
-Cada espectaculo pertenece solo a un espacio que puede ser "Anfiteatro" o "Sala".  
-La entrada contiene el tipo de entrada (1. A;2. B;0. U); el precio total; informacion sobre el espectaculo.
+
+A continuacion se detallan las entidades, sus atributos y principales metodos:
+
+**User:**
+* Atributos: username, password y role (admin o usuario).  
+  * El admin puede cargar y eliminar espectaculos.
+  * El usuario y el admin pueden comprar entradas.  
+ 
+**Espacio clase abstracta:**
+* Atributos: nombre(Anfiteatro o Sala), capacidad, tipoEntrada (1_Preferencial o 2_General).  
+  * Las entidades Sala y Anfiteatro heredan de Espacio.
+  * El metodo abstracto calcularPrecioEntrada() es implementado por Sala y Anfiteatro para calcular el precio de las entradas.
+
+**Espectaculo:**
+* Atributos: artista, fecha, hora, precioBase, duracion, tipoShow, espacio.  
+* En la base de datos existe la tabla espectaculos donde se almacenan.
+* El EspectaculoService realiza una validacion de horarios para evitar que se superpongan espectaculos en el mismo espacio.  
+
+**Entrada:**
+* Atributos: nroEntrada, tipoEntrada (1_Preferencial o 2_General), precioTotal, cantidad.
+  * Tiene una relacion 1 a muchos con Espectaculo, ya que cada entrada pertenece a un único espectaculo.
+  * Tiene una relacion 1 a muchos con User, ya que cada entrada es comprada por un único usuario.
+* Al comprar una entrada, se genera un número de entrada, teniendo en cuenta la cantidad adquirida.
 
 
-### Tecnologías para el proyecto.
+## Tecnologías para el proyecto.
 * El proyecto va a ser realizado con Java 17 en intelliJ Community, Java es un lenguaje de programación orientado a objetos y ya estoy familiarizado con el mismo por eso mi elección.
   * IntelliJ ofrece una sencilla gestión de dependencias con Maven.
 * El framework principal va a ser Spring junto con la extensión Spring Boot, que proporcionan un enfoque simplificado, modular y de rápido desarrollo para la creacion de aplicaciones con Java.
@@ -32,4 +82,5 @@ La entrada contiene el tipo de entrada (1. A;2. B;0. U); el precio total; inform
   * En primer lugar debo realizar tests unitarios sobre la lógica de los espectaculos y el login (Validación de horarios, cálculo de precios).
   * Una vez corregidos los modulos individuales, debo testear la integración entre ellos (Registro de los espectaculos).
 * Docker para que el proyecto sea portable y accesible.  
+
 
