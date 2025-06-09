@@ -58,4 +58,5 @@ postgres-data/
 # JSON DB
 *.json
 
-
+#Test de controller (no se si esta bien)
+/src/test/java/com/teatro/app/controller/

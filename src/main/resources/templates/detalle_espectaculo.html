@@ -28,6 +28,9 @@
             <button type="submit">Comprar entrada</button>
         </form>
     </div>
+    <div th:if="${espectaculo.fecha <= hoy}">
+        <p class="error">El evento ya pasó.</p>
+    </div>
     <br>
     <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
         <form th:action="@{'/espectaculo/eliminar/' + ${espectaculo.id}}" method="post">
