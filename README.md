@@ -36,7 +36,8 @@
    * Además puede modificar el puerto externo para acceder a la app (por defecto lo hace en el puerto 8081).
 
 
-3. Con el motor de Docker corriendo, dirigirse a la raiz del proyecto y ejecutar el comando `docker compose up --build`  
+3. Con el motor de Docker corriendo, dirigirse a la raiz del proyecto y ejecutar el comando:   
+    `docker compose up --build`  
    * Este comando va a instalar y levantar un contenedor con las imagenes necesarias, dependencias y configuraciones
 
 

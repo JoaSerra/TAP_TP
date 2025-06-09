@@ -17,7 +17,7 @@ public interface EspectaculoRepository extends JpaRepository<Espectaculo, Long> 
 
     List<Espectaculo> findByEspacioAndFecha(String espacio, LocalDate fecha);
 
-    /*Hibernate genera la query automaticamente y devuelve si existe un espectaculo en ese espacio esa fecha entre esas horas */
+    /*Hibernate genera la query automaticamente y devuelve si existe un espectaculo en ese espacio en esa fecha entre esas horas */
     boolean existsByEspacioAndFechaAndHoraBetween(String espacio, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin);
 
 

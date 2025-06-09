@@ -57,6 +57,7 @@ public class EspectaculoController {
             return "redirect:/espectaculo/home"; // Redirige a home si no se encuentra el espectáculo
         }
         model.addAttribute("espectaculo", espectaculo);
+        model.addAttribute("hoy", LocalDate.now());
         return "detalle_espectaculo"; // detalle_espectaculo.html
     }
 
