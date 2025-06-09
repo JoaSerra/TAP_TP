@@ -1,7 +1,6 @@
 package com.teatro.app.controller;
 
 import com.teatro.app.model.Espectaculo;
-import com.teatro.app.model.User;
 import com.teatro.app.service.EntradaService;
 import com.teatro.app.service.EspectaculoService;
 import com.teatro.app.service.EspacioService;
