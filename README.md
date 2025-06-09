@@ -41,6 +41,9 @@
 
 
 4. Una vez levantado el contenedor ya puede acceder a [localhost:8081](http://localhost:8081/) (por defecto) o el puerto configurado en el archivo “.env”
+   * Usuarios por defecto: 
+     * Admin: `admin` / `admin`
+     * User: `user` / `user`
 
 
 5. Para acceder a la base de datos puede acceder con PgAdmin.
