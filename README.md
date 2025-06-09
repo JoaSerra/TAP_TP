@@ -23,6 +23,12 @@
        sudo systemctl enable docker
        sudo systemctl start docker
        ```
+     * Debe tener instalada la libreria de python3-distutils, necesarias para alguna dependencia de Maven
+    
+       ```bash
+       sudo apt update
+       sudo apt install python3 python3-setuptools
+       ```
 
    * Para Windows
      * Docker desktop con Windows Subsystem for Linux (WLS) configurado
