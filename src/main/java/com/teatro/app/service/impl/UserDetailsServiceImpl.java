@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             User user = new User();
             user.setUsername("user");
             user.setPassword("{noop}user"); // noop para no encriptar la contraseña
-            user.setRole("USUARIO");
+            user.setRole("USER");
             userRepository.save(user);
         }
 

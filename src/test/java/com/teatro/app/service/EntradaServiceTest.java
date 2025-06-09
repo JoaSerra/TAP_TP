@@ -30,7 +30,7 @@ public class EntradaServiceTest {
 
     @Test
     void comprarEntradas_conEspacioDisponible_retornaEntrada() {
-        // Arrange
+        // creo entrada de prueba
         User usuario = new User();
         Espectaculo espectaculo = new Espectaculo();
         espectaculo.setId(1L);
@@ -41,33 +41,31 @@ public class EntradaServiceTest {
         espectaculo.setDuracionMin(90);
 
         int cantidad = 2;
-        int tipoEntrada = 2; // tipo B (precio base)
+        int tipoEntrada = 2; // entrada general
 
-        // Simulamos que se vendieron 0 entradas
+        // simulo que se vendieron 0 entradas
         Mockito.when(repo.sumarEntradasPorEspectaculo(1L)).thenReturn(0);
-        // La sala tiene capacidad para 70
+        // la sala tiene capacidad para 70
         Mockito.when(espacioService.getCapacidad("SALA")).thenReturn(70);
-        // Usamos una instancia real de Sala para calcular el precio
+        // obtengo una instancia de Sala
         Mockito.when(espacioService.crearConNombre("SALA")).thenReturn(new Sala());
-
-        // Simulamos que el repo devuelve la entrada que guardó
+        // simulo que el repo devuelve la entrada que guardó
         Mockito.when(repo.save(Mockito.any(Entrada.class)))
                 .thenAnswer(inv -> inv.getArgument(0));
 
-        // Act
+        // pruebo la compra de entradas
         Entrada entrada = service.comprarEntradas(usuario, espectaculo, cantidad, tipoEntrada);
 
-        // Assert
+        // los resultados esperados
         assertNotNull(entrada);
         assertEquals(usuario, entrada.getUsuario());
         assertEquals(espectaculo, entrada.getEspectaculo());
         assertEquals(cantidad, entrada.getCantidadEntradas());
-        assertEquals(200.0, entrada.getPrecioTotal()); // 2 x 100
+        assertEquals(200.0, entrada.getPrecioTotal());
     }
 
     @Test
     void comprarEntradas_conCapacidadExcedida_lanzaExcepcion() {
-        // Arrange
         Espectaculo espectaculo = new Espectaculo();
         espectaculo.setId(1L);
         espectaculo.setEspacio("SALA");
@@ -78,7 +76,6 @@ public class EntradaServiceTest {
         Mockito.when(repo.sumarEntradasPorEspectaculo(1L)).thenReturn(68); // ya casi lleno
         Mockito.when(espacioService.getCapacidad("SALA")).thenReturn(70);
 
-        // Act & Assert
         Exception e = assertThrows(IllegalArgumentException.class, () ->
                 service.comprarEntradas(new User(), espectaculo, cantidad, 2)
         );

@@ -45,7 +45,7 @@ public class PublicController {
             User nuevo = new User();
             nuevo.setUsername(username);
             nuevo.setPassword("{noop}" + password); // noop para no encriptar la contraseña
-            nuevo.setRole("USUARIO");
+            nuevo.setRole("USER");
             userRepository.save(nuevo);
 
             redirectAttributes.addFlashAttribute("exito", "Usuario registrado correctamente!!!");
