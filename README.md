@@ -34,7 +34,7 @@
      * Docker desktop con Windows Subsystem for Linux (WLS) configurado
    * Para Mac/OS
      * Docker desktop para Mac
-   * Puede descargarse en https://www.docker.com/products/docker*desktop/
+   * Puede descargarse en https://www.docker.com/products/docker-desktop/
 
 
 2. Para que el proyecto levante correctamente se debe renombrar el archivo “.env.example” a “.env” 
